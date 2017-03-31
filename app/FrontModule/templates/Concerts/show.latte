@@ -1,0 +1,28 @@
+{block #title}{$title} | {include #parent}{/block}
+
+{block content}
+
+<h1 class="blog-title">{$title}</h1>
+{if count($concerts) > 0}
+{foreach $concerts as $concert}
+<div class="blog-post">
+	  <h2 class="blog-post-title">{$concert->title}</h2>
+	  <div class="blog-post-content">
+			<p class="dates">
+				  Termín: {$concert->date_from|interval:$concert->date_to,$concert->time_from}
+			</p>
+			<p class="content">{$concert->content|noescape}</p>
+			{if $concert->url}
+			<p class="url"><a href="{link :Front:Articles:showArticle $concert->url}">Více informací ...</a></p>
+			{/if}
+	  </div>
+</div>
+{/foreach}
+{control vp}
+{else}
+<div class="blog-post">
+	  <p>Žádná akce nevložena</p>
+</div>
+{/if}
+
+{/block}

@@ -1,0 +1,20 @@
+{block #title}{$article->title} | {include #parent}{/block}
+
+{block content}
+
+<div class="blog-post">
+<h1 class="blog-title">{$article->title}</h1>
+<div class="blog-post-content">
+{$article->content|noescape}
+{if $article->created}
+<p class="blog-post-meta">
+Vloženo: {$article->created|date:'j. n. Y'}<br>
+{if $article->rubric}
+<a href="{link :Front:Articles:showRubric $article->rubric}" title="Přejít na články z rubriky">Přejít na články ...</a>
+{/if}
+</p>
+{/if}
+</div>
+</div>
+
+{/block}

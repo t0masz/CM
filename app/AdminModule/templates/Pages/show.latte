@@ -1,0 +1,35 @@
+{var $title = 'Stránky'}
+
+{block content}
+
+<p><a href="{link edit}"><span class="glyphicon glyphicon-plus-sign"></span> Přidej novou stránku</a></p>
+{if count($pages) > 0}
+<table class="table table-condensed table-hover">
+	<tr>
+		<th>&nbsp;</th>
+		<th>URL</th>
+		<th>Název</th>
+		<th>Typ</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+		<th>Akce</th>
+	</tr>
+	<tr n:foreach="$pages as $item" rel="{$item->id}">
+		<td>{$item->id}/{$item->order}</td>
+		<td>{$item->url}</td>
+		<td>{$item->nadpis}</td>
+		<td>{$item->typ}</td>
+		<td n:class="$item->menu ? menu" title="Zobrazit v menu">{if $item->menu}<span class="glyphicon glyphicon-star"></span>{/if}</td>
+		<td n:class="$item->system ? system" title="Systémová stránka">{if $item->system}<span class="glyphicon glyphicon-star"></span>{/if}</td>
+		<td>
+			<a href="{link edit, $item->id, $page}" title="Upravit položku"><span class="glyphicon glyphicon-pencil"></span>&nbsp;upravit</a>&nbsp;&bull;&nbsp;
+			<a href="{link delete!, $item->id}" data-confirm="Opravdu smazat stránku '{$item->nadpis}'? Tato operace může rozbít funkčnost webu!" title="Smazat položku"><span class="glyphicon glyphicon-trash"></span></a>
+		</td>
+	</tr>
+</table>
+{control vp}
+{else}
+<p>Žádná stánka nevložena</p>
+{/if}
+
+{/block}

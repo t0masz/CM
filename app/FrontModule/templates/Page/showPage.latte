@@ -1,0 +1,7 @@
+{block #title}{$obsah->titulek} | {include #parent}{/block}
+
+{block content}
+<div class="blog-post-content">
+{$obsah->obsah|noescape}
+</div>
+{/block}

@@ -1,0 +1,16 @@
+<div class="blog-masthead">
+	<nav class="blog-nav">
+{foreach $items as $item}
+	{if $item->typ=='Page:showPage'}
+		<a href="{plink :Front:$item->typ $item->url}" n:class="blog-nav-item, $presenter->linkCurrent ? active">
+	{elseif $item->typ=='Articles:showRubric'}
+		<a href="{plink :Front:$item->typ $item->rubric}" n:class="blog-nav-item, $presenter->linkCurrent ? active">
+	{elseif $item->typ=='Forms:show'}
+		<a href="{plink :Front:$item->typ$item->rubric}" n:class="blog-nav-item, $presenter->linkCurrent ? active">
+	{else}
+		<a href="{plink :Front:$item->typ}" n:class="blog-nav-item, $presenter->linkCurrent ? active">
+	{/if}{$item->titulek}</a>
+	{sep}&bull;{/sep}
+{/foreach}
+	</nav>
+</div>

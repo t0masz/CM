@@ -1,0 +1,19 @@
+{var $title = 'Upravit galerii'}
+
+{block content}
+
+{control galleriesForm}
+
+<script>
+function openKCFinder_singleFile(field) {
+    window.KCFinder = {
+        callBack: function(url) {
+            field.value = url;
+            window.KCFinder = null;
+        }
+    };
+    window.open('/licensed/kcfinder/browse.php?type=images&lang=en', 'kcfinder_single');
+}
+</script>
+
+{/block}

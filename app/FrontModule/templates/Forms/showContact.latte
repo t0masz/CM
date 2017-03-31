@@ -1,0 +1,9 @@
+{block #title}{$title} | {include #parent}{/block}
+
+{block content}
+<h1 class="blog-title">{$title}</h1>
+<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
+
+<div class="blog-content">
+{control contactForm}
+</div>

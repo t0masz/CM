@@ -1,0 +1,21 @@
+{var $title = 'Upravit položku'}
+
+{block content}
+
+<div class="box">
+{control shopForm}
+</div>
+
+<script>
+function openKCFinder_singleFile(field) {
+    window.KCFinder = {
+        callBack: function(url) {
+            field.value = url;
+            window.KCFinder = null;
+        }
+    };
+    window.open('/licensed/kcfinder/browse.php?type=images&lang=cs', 'kcfinder_single');
+}
+</script>
+
+{/block}

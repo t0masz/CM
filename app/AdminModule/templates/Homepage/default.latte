@@ -1,0 +1,209 @@
+{var $title = 'Úvod'}
+{var $subtitle = 'přehledy obsahu'}
+
+{block content}
+<div class="row">
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-newspaper-o fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><a n:href="Articles:show" title="Administrace článků">{$articles}</a></div>
+						<div>Články</div>
+					</div>
+				</div>
+			</div>
+			<a n:href="Articles:show" title="Administrace článků">
+				<div class="panel-footer">
+					<span class="pull-left">Přejdi na články</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-green">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-music fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><a n:href="Concerts:show" title="Administrace koncerů">{$concerts}</a></div>
+						<div>Koncerty</div>
+					</div>
+				</div>
+			</div>
+			<a n:href="Concerts:show" title="Administrace koncerů">
+				<div class="panel-footer">
+					<span class="pull-left">Přejdi na koncerty</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-yellow">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-camera fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><a n:href="Galleries:show" title="Administrace fotogalerií">{$galleries}</a>/<a n:href="Videos:show" title="Administrace videí">{$videos}</a></div>
+						<div>Galerie / Videa</div>
+					</div>
+				</div>
+			</div>
+				<div class="panel-footer">
+					<span class="pull-left">&nbsp;</span>
+					<div class="clearfix"></div>
+				</div>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-red">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-shopping-cart fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><a n:href="Shop:show" title="Administrace e-shopu">{$items}</a>/<a n:href="Orders:show" title="Administrace e-shopu">{$orders}</a></div>
+						<div>E-shop / Objednávky</div>
+					</div>
+				</div>
+			</div>
+				<div class="panel-footer">
+					<span class="pull-left">&nbsp;</span>
+					<div class="clearfix"></div>
+				</div>
+		</div>
+	</div>
+	{if $user->isInRole('admin')}
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-list-ul fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><a n:href="Rubrics:show" title="Administrace rubrik">{$rubrics}</a></div>
+						<div>Rubriky</div>
+					</div>
+				</div>
+			</div>
+			<a n:href="Rubrics:show" title="Administrace rubrik">
+				<div class="panel-footer">
+					<span class="pull-left">Přejdi na rubriky</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-green">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-globe fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><a n:href="Pages:show" title="Administrace stránek">{$pages}</a></div>
+						<div>Stránky</div>
+					</div>
+				</div>
+			</div>
+			<a n:href="Pages:show" title="Administrace stránek">
+				<div class="panel-footer">
+					<span class="pull-left">Přejdi na stránky</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<div class="col-lg-3 col-md-6">
+		<div class="panel panel-yellow">
+			<div class="panel-heading">
+				<div class="row">
+					<div class="col-xs-3">
+						<i class="fa fa-users fa-5x"></i>
+					</div>
+					<div class="col-xs-9 text-right">
+						<div class="huge"><a n:href="User:show" title="Administrace uživatel">{$users}</a></div>
+						<div>Uživatelé</div>
+					</div>
+				</div>
+			</div>
+			<a n:href="User:show" title="Administrace uživatel">
+				<div class="panel-footer">
+					<span class="pull-left">Přejdi na uživatele</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+					<div class="clearfix"></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	{/if}
+</div>
+<!-- /.row -->
+
+<div class="row">
+	<div class="col-lg-12">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-user fa-fw"></i> {$user->getIdentity()->name}</h3>
+			</div>
+			<div class="panel-body">
+				<dl class="dl-horizontal">
+					<dt>Přihlašovací jméno</dt>
+					<dd>{$user->getIdentity()->username}</dd>
+					<dt>Práva</dt>
+					<dd>{$user->getIdentity()->roles[0]}</dd>
+					<dt>E-mail</dt>
+					<dd>{$user->getIdentity()->email}</dd>
+				</dl>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-8">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-envelope fa-fw"></i> Rychlý kontakt na admina</h3>
+			</div>
+			<div class="panel-body">
+				<p>Své přání na opravy chyb, úpravy či nápady na rozšíření stránek můžeš zaslat pomocí následujícího formuláře:</p>
+				{control contactForm}
+			</div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="panel-title"><i class="fa fa-money fa-fw"></i> Poslední události</h3>
+			</div>
+			<div class="panel-body">
+				<ul class="list-group">
+					<li class="list-group-item">
+						<span class="badge">chystá se</span>
+						<i class="fa fa-fw fa-calendar"></i> V plánu
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- /.row -->
+
+{/block}

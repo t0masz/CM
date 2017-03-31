@@ -1,0 +1,26 @@
+{block #title}{$pagecontent->titulek} | {include #parent}{/block}
+
+{block content}
+
+<h1 class="blog-title">{$pagecontent->titulek}</h1>
+{default $pagecontent = ''}
+{if $pagecontent}
+	<div class="blog-description">
+	{$pagecontent->obsah|noescape}
+	</div>
+{/if}
+{if count($galleries) > 0}
+{foreach $galleries as $item}
+	<div class="blog-post col-md-6">
+		<h2 class="blog-post-title"><a href="{$item->url}" title="{$item->content}" target="_blank">{$item->name}</a></h2>
+		<div class="foto">
+			<img src="{$item->picture}" title="{$item->content}">
+		</div>
+	</div>
+{/foreach}
+{control vp}
+{else}
+	<h2>Žádná galerie nevložena</h2>
+{/if}
+
+{/block}

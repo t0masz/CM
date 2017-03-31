@@ -1,0 +1,79 @@
+{**
+ * CM Bukovinka layout template.
+ *
+ * @copyright  Copyright (c) 2015 T0masz
+ * @package    CM Bukovinka Administration module
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="robots" content="{$robots}" n:ifset="$robots">
+
+	<title>{ifset $title}{$title} &ndash; {/ifset}Administrace</title>
+
+	<link href="{$basePath}/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="{$basePath}/css/font-awesome.min.css" rel="stylesheet" media="screen">
+	<link href="{$basePath}/css/sb-admin.css" rel="stylesheet" media="screen">
+	<link href="{$basePath}/css/admin.css" rel="stylesheet" media="screen">
+	<link href="{$basePath}/css/dateInput.css" rel="stylesheet">
+	<link href="{$basePath}/css/jquery-ui.min.css" rel="stylesheet">
+	<link href="{$basePath}/css/jquery-ui-timepicker-addon.min.css" rel="stylesheet">
+	<link rel="shortcut icon" href="{$basePath}/favicon.ico" type="image/x-icon">
+
+	{block head}{/block}
+</head>
+
+<body>
+	<script> document.body.className+=' js' </script>
+	{if $user->isLoggedIn()}
+	<div id="wrapper">
+		<div id="page-wrapper">
+		{include menu.latte}
+	{else}
+	<div class="container">
+	{/if}
+		<div>
+			<div class="container-fluid">
+				<!-- Page Heading -->
+				<div class="row">
+					<div class="col-lg-12">
+						{ifset $title}
+						<h1 class="page-header">
+							{$title|noescape}{ifset $subtitle} <small>{$subtitle|noescape}</small>{/ifset}
+						</h1>
+						{/ifset}
+					</div>
+				</div>
+				<!-- /.row -->
+	
+				<div n:foreach="$flashes as $flash" class="alert alert-{$flash->type}">{$flash->message}</div>
+				{include #content}
+			</div>
+		</div>
+        <footer class="footer">
+	        <p class="text-muted">&copy; {date("Y")} CM Bukovinka</p>
+	    </footer>
+	</div>
+
+	<script src="{$basePath}/js/jquery.min.js?v=1.12.4"></script>
+	<script src="{$basePath}/js/jquery-ui.1.10.3.min.js"></script>
+	<script src="{$basePath}/js/bootstrap.min.js?v=3.3.7"></script>
+	<script src="{$basePath}/js/netteForms.min.js?v=2.4.2"></script>
+	<script src="{$basePath}/js/main.js"></script>
+	<script src="{$basePath}/js/ckeditor/ckeditor.js?v=4.6.0"></script>
+	<script src="{$basePath}/js/jquery-ui-timepicker-addon.min.js"></script>
+	<script src="{$basePath}/js/timepicker-i18n/jquery-ui-timepicker-cs.js"></script>
+	<script src="{$basePath}/js/dateInput.js"></script>
+	<script src="{$basePath}/js/FileAPI.js"></script>
+	{block script}{/block}
+
+</body>
+</html>

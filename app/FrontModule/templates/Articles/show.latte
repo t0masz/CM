@@ -1,0 +1,18 @@
+{block #title}{include #parent}{/block}
+
+{block content}
+
+<h1>Cimbálová muzika Bukovinka z Bystřice pod Hostýnem</h1>
+{if count($articles) > 0}
+{foreach $articles as $article}
+  <div class="article-box">
+  <h2><a href="{link :Front:Articles:showArticle $article->url}">{$article->title|noescape}</a></h2>
+  {$article->content|noescape|striptags:'<img><a><strong>'|truncate:500}<p class="vlozeno">Vloženo: {$article->created|date:'j. n. Y'}</p>
+  </div>
+{/foreach}
+{control vp}
+{else}
+  <h2>Žádný článek nevložen</h2>
+{/if}
+
+{/block}

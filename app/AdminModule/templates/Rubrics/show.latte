@@ -1,0 +1,29 @@
+{var $title = 'Rubriky'}
+
+{block content}
+
+<p><a href="{link edit}"><span class="glyphicon glyphicon-plus-sign"></span> Přidej novou rubriku</a></p>
+{if count($rubrics) > 0}
+<table class="table table-condensed table-hover">
+  <tr>
+		<th>&nbsp;</th>
+		<th>URL</th>
+		<th>Název</th>
+		<th>Akce</th>
+	</tr>
+  <tr n:foreach="$rubrics as $item" rel="{$item->id}">
+	  <td>{$iterator->counter}.</td>
+		<td>{$item->url}</td>
+		<td>{$item->name}</td>
+		<td>
+			<a href="{link edit, $item->id, $page}" title="Upravit položku"><span class="glyphicon glyphicon-pencil"></span>&nbsp;upravit</a>&nbsp;&bull;&nbsp;
+			<a href="{link delete!, $item->id}" data-confirm="Opravdu smazat tento rubriku '{$item->name}'?" title="Smazat položku"><span class="glyphicon glyphicon-trash"></span></a>
+		</td>
+  </tr>
+</table>
+{control vp}
+{else}
+<p>Žádná rubrika nevložena</p>
+{/if}
+
+{/block}

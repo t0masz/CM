@@ -1,0 +1,34 @@
+{var $title = 'Grafika'}
+
+{block content}
+
+<p><a href="{link import!}" class="new"><span class="glyphicon glyphicon-refresh"></span> Importuj fotky (2.)</a>&nbsp;&bull;&nbsp;<a href="{link upload}" class="photos_upload" title="Upload souborů pomocí HTML5"><span class="glyphicon glyphicon-upload"></span> Upload fotek (1.)</a></p>
+{if count($pictures) > 0}
+<p><strong>Doporučení</strong>: nechávej pouze 1 aktivní fotku pro upoutávku na galerii (kvůli výkonu) a maximálně 10 pro hlavičku stránek (víc se jich stejně nezobrazí). Díky:-)</p>
+<table class="table table-condensed table-hover">
+  <tr>
+		<th>&nbsp;</th>
+		<th>Náhled</th>
+		<th>Popis</th>
+		<th>Pozice</th>
+		<th>Aktivita</th>
+		<th>Akce</th>
+	</tr>
+  <tr n:foreach="$pictures as $picture" rel="{$picture->id}">
+	  <td>{$picture->id}.</td>
+		<td><img src="/data/images/grafika/{$picture->file}" height="50"></td>
+		<td>{$picture->position|replace:'head','hlavička'|replace:'gallery','upoutávka na galerii'}</td>
+		<td>{$picture->title|truncate:20}</td>
+		<td>{$picture->active|replace:'1','aktivní'|replace:'0','neaktivní'}</td>
+		<td>
+			<a href="{link edit, $picture->id, $page}" title="Upravit položku"><span class="glyphicon glyphicon-pencil"></span>&nbsp;upravit</a>&nbsp;&bull;&nbsp;
+			<a href="{link delete!, $picture->id}" data-confirm="Opravdu smazat obrázek '{$picture->file}'?" title="Smazat položku"><span class="glyphicon glyphicon-trash"></span></a>
+		</td>
+  </tr>
+</table>
+{control vp}
+{else}
+<p>Žádná fotka nevložena</p>
+{/if}
+
+{/block}

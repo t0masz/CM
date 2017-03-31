@@ -1,0 +1,45 @@
+parameters:
+	params:
+		password: '8'
+		homepage:
+			hlavicka: '5'
+			upoutavka: '1'
+			koncerty_box: '5'
+		strankovani:
+			clanky: '5'
+			koncerty: '5'
+			galerie: '8'
+			videa: '4'
+			administrace: '12'
+		postovne:
+			dobirka: '83'
+			prevod: '42'
+			balne: '20'
+		mail:
+			name: ''
+			to: ''
+			to_mail: ''
+		shop:
+			from: ''
+			from_mail: ''
+		admin:
+			name: ''
+			to: ''
+			to_mail: ''
+	database:
+		driver: mysql
+		host: 
+		dbname: 
+		user: 
+		password:
+		options:
+			lazy: yes
+
+tracy:
+	bar:
+		- Nextras\MailPanel\MailPanel(%tempDir%/mail-panel-latte)
+
+services:
+	nette.mailer:
+		class: Nette\Mail\IMailer
+		factory: Nextras\MailPanel\FileMailer(%tempDir%/mail-panel-mails)

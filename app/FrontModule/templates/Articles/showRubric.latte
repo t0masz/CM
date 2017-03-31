@@ -1,0 +1,26 @@
+{block #title}{$pagecontent->titulek} | {include #parent}{/block}
+
+{block content}
+
+<h1 class="blog-title">{$pagecontent->titulek}</h1>
+{default $pagecontent = ''}
+{if $pagecontent}
+	<div class="blog-description">
+	{$pagecontent->obsah|noescape}
+	</div>
+{/if}
+{if count($articles) > 0}
+{foreach $articles as $article}
+  <div class="blog-post">
+  <h2 class="blog-post-title"><a href="{link :Front:Articles:showArticle $article->url}">{$article->title|noescape}</a></h2>
+	<div class="blog-post-content">
+  {$article->content|noescape|tags:'<img>'|truncate:500}<p class="blog-post-meta">Vloženo: {$article->created|date:'j. n. Y'}</p>
+	</div>
+  </div>
+{/foreach}
+{control vp}
+{else}
+  <h2>Žádný článek v rubrice nevložen</h2>
+{/if}
+
+{/block}

@@ -1,0 +1,36 @@
+{var $title = 'Upravit článek'}
+
+{block content}
+
+<div class="box">
+{control articlesForm}
+</div>
+
+{/block}
+
+{block script}
+<script type="text/javascript">
+	$('input[data-dateinput-type]').dateinput({
+		datetime: {
+			dateFormat: 'd.m.yy',
+			timeFormat: 'H:mm'
+		},
+		'datetime-local': {
+			dateFormat: 'd.m.yy',
+			timeFormat: 'H:mm'
+		},
+		date: {
+			dateFormat: 'd.m.yy'
+		},
+		month: {
+			dateFormat: 'MM yy'
+		},
+		week: {
+			dateFormat: "w. 'týden' yy"
+		},
+		time: {
+			timeFormat: 'H:mm'
+		},
+	});
+</script>
+{/block}

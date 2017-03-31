@@ -1,0 +1,32 @@
+{var $title = 'Koncerty'}
+
+{block content}
+
+<p><a href="{link edit}"><span class="glyphicon glyphicon-plus-sign"></span> Přidej novou akci</a></p>
+{if count($concerts) > 0}
+<table class="table table-condensed table-hover">
+  <tr>
+	<th>&nbsp;</th>
+	<th>Termín</th>
+	<th>Místo</th>
+	<th>Akce</th>
+  </tr>
+  <tr n:foreach="$concerts as $concert" rel="{$concert->id}">
+	<td>{$concert->id}.</td>
+	<td>{$concert->date_from|interval:$concert->date_to,$concert->time_from}</td>
+	<td>{$concert->title}</td>
+	<td>
+	  <a href="{link edit,$concert->id,$page}" title="Upravit položku"><span class="glyphicon glyphicon-pencil"></span>&nbsp;upravit</a>
+	  {if $user->isInRole('admin')}
+	  &nbsp;&bull;&nbsp;
+	  <a href="{link delete!, $concert->id}" data-confirm="Opravdu smazat informaci o koncertu '{$concert->title}'?" title="Smazat položku"><span class="glyphicon glyphicon-trash"></span></a>
+	  {/if}
+	</td>
+  </tr>
+</table>
+{control vp}
+{else}
+<p>Žádná akce nevložena</p>
+{/if}
+
+{/block}

@@ -1,0 +1,119 @@
+#
+# SECURITY WARNING: it is CRITICAL that this file & directory are NOT accessible directly via a web browser!
+#
+# If you don't protect this directory from direct web access, anybody will be able to see your passwords.
+# http://nette.org/security-warning
+#
+parameters:
+	params:
+		password: '8'
+		items:
+			header: '5'
+			teaser: '1'
+			actions_box: '5'
+		paging:
+			articles: '5'
+			concerts: '5'
+			galleries: '8'
+			videos: '4'
+			administration: '15'
+		postage:
+			cash_on_delivery: '83'
+			transfer: '42'
+			packing: '20'
+		mail:
+			name: ''
+			to: ''
+			to_mail: ''
+		shop:
+			from: ''
+			from_mail: ''
+		admin:
+			name: ''
+			to: ''
+			to_mail: ''
+	database:
+		driver: mysql
+		host: 
+		dbname: 
+		user: 
+		password: 
+		profiler: TRUE
+		charset: utf8
+		options:
+			lazy: yes
+
+php:
+	date.timezone: Europe/Prague
+
+application:
+	errorPresenter: Error:Error
+	mapping:
+		*: App\*Module\*Presenter
+
+session:
+	autoStart: true
+	expiration: 14 days
+
+database:
+	default:
+		dsn: '%database.driver%:host=%database.host%;dbname=%database.dbname%'
+		user: %database.user%
+		password: %database.password%
+
+services:
+	database: Nette\Database\Connection('%database.driver%:host=%database.host%;dbname=%database.dbname%', %database.user%, %database.password%)
+
+	authorizator:
+		class: Nette\Security\Permission
+		setup:
+			- addRole('guest')
+			- addRole('redaktor')
+			- addRole('admin')
+			- addResource('Admin:Default')
+			- addResource('Admin:Homepage')
+			- addResource('Admin:Articles')
+			- addResource('Admin:Concerts')
+			- addResource('Admin:Galleries')
+			- addResource('Admin:Images')
+			- addResource('Admin:Orders')
+			- addResource('Admin:Pages')
+			- addResource('Admin:Rubrics')
+			- addResource('Admin:Shop')
+			- addResource('Admin:User')
+			- addResource('Admin:User:default')
+			- addResource('Admin:Videos')
+			- allow('redaktor','Admin:Homepage')
+			- allow('redaktor','Admin:User','default')
+			- allow('redaktor','Admin:Articles')
+			- allow('redaktor','Admin:Galleries')
+			- allow('redaktor','Admin:Videos')
+			- allow('redaktor','Admin:Concerts')
+			- allow('admin')
+
+	- Model\Authenticator
+	- Model\ArticlesRepository
+	- Model\ArticlesManager
+	- Model\ConcertsRepository
+	- Model\ConcertsManager
+	- Model\GalleriesRepository
+	- Model\GalleriesManager
+	- Model\ImagesManager
+	- Model\ImagesRepository
+	- Model\LogRepository
+	- Model\LogManager
+	- Model\PagesRepository
+	- Model\PagesManager
+	- Model\OrdersRepository
+	- Model\RubricsRepository
+	- Model\ShopRepository
+	- Model\ShopManager
+	- Model\UsersManager
+	- Model\UsersRepository
+	- Model\VideosRepository
+	- Model\VideosManager
+	- Model\FormManager
+	- Model\SetupManager(%params%)
+	
+	- App\RouterFactory
+	router: @App\RouterFactory::createRouter

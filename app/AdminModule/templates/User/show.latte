@@ -1,0 +1,31 @@
+{var $title = 'Uživatelé'}
+
+{block content}
+
+<p><a href="{link edit}"><span class="glyphicon glyphicon-plus-sign"></span> Přidej nového uživatele</a> &bull; <a href="{link log}"><span class="glyphicon glyphicon-align-justify"></span> Log přihlášení</a></p>
+{if count($users) > 0}
+<table class="table table-condensed table-hover">
+  <tr>
+		<th>&nbsp;</th>
+		<th>Jméno</th>
+		<th>Role</th>
+		<th>E-mail</th>
+		<th>Akce</th>
+	</tr>
+  <tr n:foreach="$users as $item" rel="{$item->id}">
+	  <td>{$item->id}.</td>
+		<td>{$item->name}</td>
+		<td>{$item->role}</td>
+		<td><a href="mailto:{$item->email}">{$item->email}</a></td>
+		<td>
+			<a href="{link edit, $item->id, $page}" title="Upravit položku"><span class="glyphicon glyphicon-pencil"></span>&nbsp;upravit</a>&nbsp;&bull;&nbsp;
+			<a href="{link delete!, $item->id}" data-confirm="Opravdu smazat uživatele '{$item->name}'?" title="Smazat položku"><span class="glyphicon glyphicon-trash"></span></a>
+		</td>
+  </tr>
+</table>
+{control vp}
+{else}
+<p>Žádný uživatel neregistrován</p>
+{/if}
+
+{/block}

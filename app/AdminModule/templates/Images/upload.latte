@@ -1,0 +1,20 @@
+{var $title = 'Upload fotek pomocí HTML5'}
+
+{block content}
+
+<form action="" method="post" enctype="multipart/form-data">
+	<input type="file" id="fileField" name="fileField" multiple />
+</form>
+
+<div id="fileDrop">
+	<p>Sem přetáhni soubory (1.)</p>
+</div>
+
+<div id="files">
+	<p>Seznam souborů k uploadu</p>
+	<a id="reset" href="#" title="Remove all files from list">Smazat seznam</a>
+	<ul id="fileList"></ul>
+	<a id="upload" href="#" title="Upload all files in list">Nahrát soubory (2.)</a>
+</div>
+
+{/block}

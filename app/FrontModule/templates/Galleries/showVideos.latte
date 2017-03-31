@@ -1,0 +1,24 @@
+{block #title}{$pagecontent->titulek} | {include #parent}{/block}
+
+{block content}
+
+<h1 class="blog-title">{$pagecontent->titulek}</h1>
+{default $pagecontent = ''}
+{if $pagecontent}
+	<div class="blog-description">
+	{$pagecontent->obsah|noescape}
+	</div>
+{/if}
+{if count($videos) > 0}
+{foreach $videos as $video}
+  <div class="blog-post">
+  <h2 class="blog-post-title">{$video->title}</h2>
+		<div class="video">{$video->code|noescape}</div>
+  </div>
+{/foreach}
+{control vp}
+{else}
+  <h2>Žádné video nevloženo</h2>
+{/if}
+
+{/block}

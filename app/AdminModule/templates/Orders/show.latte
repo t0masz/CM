@@ -1,0 +1,35 @@
+{var $title = 'Objednávky'}
+
+{block content}
+
+{if count($orders) > 0}
+<table class="table table-condensed table-hover">
+  <tr>
+		<th>&nbsp;</th>
+		<th>Datum</th>
+		<th>Jméno</th>
+		<th>Objednávka</th>
+		<th>Cena*</th>
+		<th>Stav</th>
+		<th>Akce</th>
+	</tr>
+  <tr n:foreach="$orders as $order" rel="{$order->id}">
+	  <td>{$order->id}.</td>
+	  <td>{$order->sent|date:"j.n.Y G:i"}</td>
+		<td>{$order->name}<br>{$order->mail}<br>{$order->contact}</td>
+		<td>{$order->items|noescape|breaklines}</td>
+		<td>{$order->price},-</td>
+		<td>{$order->state}</td>
+		<td>
+			<a href="{link edit,$order->id,$page}" title="Upravit položku"><span class="glyphicon glyphicon-pencil"></span>&nbsp;upravit</a>&nbsp;&bull;&nbsp;
+			<a href="{link delete!, $order->id}" data-confirm="Opravdu smazat objednávku od '{$order->name} z {$order->sent|date:"j.n.Y G:i"}'?" title="Smazat položku"><span class="glyphicon glyphicon-trash"></span></a>
+		</td>
+  </tr>
+</table>
+<p>* cena je bez poštovného</p>
+{control vp}
+{else}
+<p>Žádná objednávka nevložena</p>
+{/if}
+
+{/block}

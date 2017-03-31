@@ -1,0 +1,79 @@
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	<!-- Brand and toggle get grouped for better mobile display -->
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" n:href=":Front:Articles:showHome" title="Stránky CM Bukovinky"><img src="/css/imgs/logo-pruhledne.gif" height="25"></a>
+	</div>
+	<!-- Top Menu Items -->
+	<ul class="nav navbar-right top-nav">
+		<li class="dropdown">
+			<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> {$user->getIdentity()->name} <b class="caret"></b></a>
+			<ul class="dropdown-menu">
+				<li>
+					<a n:href="User:default" title="Změnit heslo"><i class="fa fa-fw fa-user"></i> Změnit heslo</a>
+				</li>
+				<li>
+					<a n:href="User:log" title="Log přihlášení"><i class="fa fa-fw fa-gear"></i> Logy</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a n:href="signOut!"><i class="fa fa-fw fa-power-off"></i> Odhlásit se</a>
+				</li>
+			</ul>
+		</li>
+	</ul>
+	<!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+	<div class="collapse navbar-collapse navbar-ex1-collapse">
+		<ul class="nav navbar-nav side-nav">
+			<li n:class="$presenter->isLinkCurrent('Homepage:*') ? active">
+				<a n:href="Homepage:" title="Úvodní stránka administrace"><i class="fa fa-fw fa-dashboard"></i> Administrace</a>
+			</li>
+			<li n:class="$presenter->isLinkCurrent('Articles:*') ? active">
+				<a n:href="Articles:show" title="Správa článků"><i class="fa fa-fw fa-newspaper-o"></i> Články</a>
+			</li>
+			{if $user->isInRole('admin')}
+			<li n:class="$presenter->isLinkCurrent('Rubrics:*') ? active">
+				<a n:href="Rubrics:show" title="Správa rubrik"><i class="fa fa-fw fa-list-ul"></i> Rubriky</a>
+			</li>
+			{/if}
+			<li n:class="$presenter->isLinkCurrent('Concerts:*') ? active">
+				<a n:href="Concerts:show" title="Správa koncertů"><i class="fa fa-fw fa-music"></i> Koncerty</a>
+			</li>
+			<li n:class="$presenter->isLinkCurrent('Galleries:*') ? active">
+				<a n:href="Galleries:show" title="Správa fotogalerií"><i class="fa fa-fw fa-camera"></i> Galerie</a>
+			</li>
+			<li n:class="$presenter->isLinkCurrent('Videos:*') ? active">
+				<a n:href="Videos:show" title="Správa videí"><i class="fa fa-fw fa-video-camera"></i> Videa</a>
+			</li>
+			{if $user->isInRole('admin')}
+			<li n:class="$presenter->isLinkCurrent('Pages:*') ? active">
+				<a n:href="Pages:show" title="Správa stránek"><i class="fa fa-fw fa-globe"></i> Stránky</a>
+			</li>
+			<li n:class="$presenter->isLinkCurrent('Images:*') ? active">
+				<a n:href="Images:show" title="Grafika webu: hlavička, menu"><i class="fa fa-fw fa-picture-o"></i> Grafika</a>
+			</li>
+			{/if}
+			<li n:class="$presenter->isLinkCurrent('Shop:*') ? active">
+				<a n:href="Shop:show" title="Správa e-shopu"><i class="fa fa-fw fa-shopping-cart"></i> E-shop</a>
+			</li>
+			<li n:class="$presenter->isLinkCurrent('Orders:*') ? active">
+				<a n:href="Orders:show" title="Správa objednávek z e-shopu"><i class="fa fa-fw fa-eur"></i> Objednávky</a>
+			</li>
+			{if $user->isInRole('admin')}
+			<li n:class="$presenter->isLinkCurrent('User:*') ? active">
+				<a n:href="User:show" title="Správa uživatel"><i class="fa fa-fw fa-users"></i> Uživatelé</a>
+			</li>
+			{/if}
+			<li>
+				<a n:href=":Front:Articles:showHome" title="Stránky CM Bukovinky"><i class="fa fa-fw fa-bookmark"></i> CM Bukovinka</a>
+			</li>
+		</ul>
+	</div>
+	<!-- /.navbar-collapse -->
+</nav>

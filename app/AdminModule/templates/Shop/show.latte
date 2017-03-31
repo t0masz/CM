@@ -1,0 +1,31 @@
+{var $title = 'Shop'}
+
+{block content}
+
+<p><a href="{link edit}"><span class="glyphicon glyphicon-plus-sign"></span> Přidej novou položku</a></p>
+{if count($items) > 0}
+<table class="table table-condensed table-hover">
+  <tr>
+		<th>&nbsp;</th>
+		<th>Název</th>
+		<th>Obrázek</th>
+		<th>Odkaz</th>
+		<th>Akce</th>
+	</tr>
+  <tr n:foreach="$items as $item" rel="{$item->id}">
+	  <td>{$item->id}.</td>
+		<td>{$item->title}</td>
+		<td><img src="{$item->picture}" height="50"></td>
+		<td title="{$item->url}">{$item->url|truncate:25}</td>
+		<td>
+			<a href="{link edit, $item->id, $page}" title="Upravit položku"><span class="glyphicon glyphicon-pencil"></span>&nbsp;upravit</a>&nbsp;&bull;&nbsp;
+			<a href="{link delete!, $item->id}" data-confirm="Opravdu smazat položku e-shopu '{$item->title}'?" title="Smazat položku"><span class="glyphicon glyphicon-trash"></span></a>
+		</td>
+  </tr>
+</table>
+{control vp}
+{else}
+<p>Žádná položka nevložena</p>
+{/if}
+
+{/block}

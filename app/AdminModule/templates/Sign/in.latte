@@ -1,0 +1,21 @@
+{var $robots = noindex}
+
+{* layout '@login.latte' *}
+
+{block #content}
+<div class="panel panel-default signin">
+  <div class="panel-heading">Přihlášení do administrace</div>
+  <div class="panel-body">
+	{form signInForm}
+	{control $form errors}
+	{input username class => "form-control", placeholder => "login", autofocus => TRUE}
+	{input password class => "form-control", placeholder => "password"}
+	{input login class => "btn btn-lg btn-block"}
+	{/form}
+  </div>
+</div>
+{/block}
+
+{block head}
+<link href="{$basePath}/css/signin.css" rel="stylesheet" media="screen">
+{/block}

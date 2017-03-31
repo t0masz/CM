@@ -1,0 +1,33 @@
+{var $title = 'Články'}
+{var $subtitle = ''}
+
+{block content}
+
+<p><a href="{link edit}"><span class="glyphicon glyphicon-plus-sign"></span> Přidej nový článek</a></p>
+{if count($articles) > 0}
+<table class="table table-condensed table-hover">
+  <tr>
+	<th>&nbsp;</th>
+	<th>Název</th>
+	<th>Text</th>
+	<th>Akce</th>
+  </tr>
+  <tr n:foreach="$articles as $article" rel="{$article->id}">
+	<td>{$article->id}.</td>
+	<td>{$article->title}</td>
+	<td>{$article->content|striptags|truncate:85}</td>
+	<td>
+	  <a href="{link edit, $article->id, $page}" title="Upravit položku"><span class="glyphicon glyphicon-pencil"></span>&nbsp;upravit</a>
+	  {if $user->isInRole('admin')}
+	  &nbsp;&bull;&nbsp;
+	  <a href="{link delete!, $article->id}" data-confirm="Opravdu smazat článek '{$article->title}'?" title="Smazat položku"><span class="glyphicon glyphicon-trash"></span></a>
+	  {/if}
+	</td>
+  </tr>
+</table>
+{control vp}
+{else}
+<p>Žádný článek nevložen</p>
+{/if}
+
+{/block}

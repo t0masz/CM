@@ -1,0 +1,120 @@
+{**
+ * CM Bukovinka layout template.
+ *
+ * @copyright  Copyright (c) 2015 T0masz
+ * @package    CM Bukovinka Front module
+ *
+ * @param string   $basePath web base path
+ * @param string   $robots   tell robots how to index the content of a page (optional)
+ * @param array    $flashes  flash messages
+ *}
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+	<title>{block #title}Cimbálová muzika Bukovinka z Bystřice pod Hostýnem{/block}</title>
+	<link rel="stylesheet" type="text/css" media="screen" href="{$basePath}/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="{$basePath}/css/blog.css">
+	<link rel="stylesheet" type="text/css" media="screen" href="{$basePath}/css/prettyPhoto.css" media="screen">
+	<link rel="shortcut icon" href="/favicon.ico">
+</head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-8 blog-main">
+				<div class="row">
+					<div class="col-sm-8 text-center">
+					<a n:href=":Front:Articles:showHome" title="Úvodní stránka"><img src="/css/imgs/logo1.png" alt="Cimbálová muzika Bukovinka z Bystřice pod Hostýnem" class="img-responsive head"></a>
+					</div>
+					<div class="col-sm-4 text-center blog-head-description">
+					Cimbálová muzika Bukovinka z&nbsp;Bystřice pod Hostýnem
+					</div>
+				</div>
+				{* TODO: make carousel as component? *}
+				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+					<div class="carousel-inner" role="listbox">
+					{if count($pictures) > 0}
+						{foreach $pictures as $picture}
+						<div n:class="$iterator->first ? 'item active' : item">
+							<img src="/data/images/grafika/{$picture->file}" alt="{$picture->title}">
+							{if isset($picture->title) && $picture->title != ''}<div class="carousel-caption">{$picture->title}</div>{/if}
+						</div>
+						{/foreach}
+					{else}
+						<div class="item active"><img src="/data/images/grafika/default/head.jpg" alt="">
+							<div class="carousel-caption">Cimbálová muzika Bukovinka</div>
+						</div>
+					{/if}
+				</div>
+			</div>
+				{control menu}
+				{include #content}
+			</div>
+			<div class="col-sm-4 blog-sidebar">
+				{control actual}
+				<div id="facebook">
+				<h2><span class="glyphicon glyphicon-thumbs-up"></span><a href="https://www.facebook.com/bukovinka" target="_blank">Facebook</a></h2>
+				<div class="content">
+				Připojte se k nám
+				</div>
+				</div>
+				<div id="gallery">
+				<h2><span class="glyphicon glyphicon-picture"></span><a href="{plink :Front:Galleries:showGalleries}">Foto</a> a <a href="{link :Front:Galleries:showVideos}">video</a></h2>
+				<div class="content text-center">
+				{if $gallery}
+				<a href="{plink :Front:Galleries:showGalleries}"><img src="/data/images/grafika/{$gallery->file}" height="147" width="220"></a>
+				{else}
+				<a href="{plink :Front:Galleries:showGalleries}"><img src="/data/images/grafika/default/gallery.jpg" height="147" width="220"></a>
+				{/if}
+				</div>
+				</div>
+				<div id="contact">
+				<h2><span class="glyphicon glyphicon-envelope"></span><a href="{plink :Front:Forms:showContact}">Kontakt</a></h2>
+				<div class="content">
+				Radek Cahlík<br>
+				Zahradní 286<br>
+				76861 Bystřice pod Hostýnem<br><br>
+				mobil: +420 605 859 670<br><br>
+				e-mail: <a href="m&#97;ilto&#58;bukovinka&#64;email&#46;&#99;z">bukovinka<!-- bude -->&#64;<!-- fungovat -->email&#46;&#99;z</a>
+				</div> 
+				</div>
+				<div id="langs">
+				<div class="content text-center">
+				<a href="{plink :Front:Page:showPage,en}"><img src="/css/imgs/gb.png"></a><a href="{plink :Front:Page:showPage,it}"><img src="/css/imgs/it.png"></a>
+				</div>
+				</div>
+				<div id="login">
+				{if $user->isLoggedIn()}
+				<div>
+				<h2><span class="glyphicon glyphicon-user"></span>Přihlášení</h2>
+				<div class="content">
+				Přihlášený jako <strong>{$user->getIdentity()->name}</strong><br /><a href="{plink :Admin:Homepage:}">Administrace</a> | <a n:href="signOut!">odhlásit</a>
+				</div>
+				</div>
+				{/if}
+				</div>
+			</div>
+		</div>
+		<footer class="blog-footer">
+		  <p>Copyright &copy; {date('Y')} CM Bukovinka{if !$user->isLoggedIn()} | <a href="{plink :Admin:Homepage:}">Přihlásit se</a>{/if}</p>
+		</footer>
+	</div>
+
+	<script type="text/javascript" src="/js/jquery.min.js?v=1.12.4"></script>
+	<script type="text/javascript" src="/js/bootstrap.min.js?v=3.3.7"></script>
+	<script type="text/javascript" src="/js/netteForms.min.js?v=2.4.2"></script>
+	<script type="text/javascript" src="/js/jquery.prettyPhoto.js?v=3.1.5a"></script>
+	<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+		$("a[rel^='pekny']").prettyPhoto();
+		$('.carousel').carousel({
+		  interval: 20000
+		});
+	});
+	</script>
+</body>
+</html>

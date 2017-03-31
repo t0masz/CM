@@ -1,0 +1,167 @@
+body {
+	background-color: #F1B66F;
+}
+table {
+	width: 100%;
+}
+tr {
+	margin-top: 5px;
+}
+#page-wrapper {
+	background-color: #FDEAD4;
+}
+
+/* Navigation */
+.top-nav > li > a {
+	color: #000;
+}
+.top-nav > li > a:hover {
+	background-color: #FDEAD4;
+}
+.top-nav > li > a:hover, .top-nav > li > a:focus, .top-nav > .open > a, .top-nav > .open > a:hover, .top-nav > .open > a:focus {
+	background-color: #FDEAD4;
+	color: #000;
+}
+.side-nav, .navbar-inverse .navbar-collapse {
+	background-color: #F1B66F;
+}
+.navbar {
+	border-color: #F1B66F;
+}
+.navbar-inverse {
+	background-color: #F1B66F;
+}
+.navbar-inverse .navbar-brand {
+	color: #000;
+}
+.navbar-inverse .navbar-nav > li > a {
+	color: #000;
+}
+.navbar-inverse .navbar-nav > .active > a {
+	background-color: #FDEAD4;
+	color: #000;
+}
+.huge > a {
+	color: #fff;
+}
+
+/* Pagination */
+.pagination > li > span {
+  background-color: #cd9050;
+}
+.pagination > .active > a, .pagination > .active > a:focus, .pagination > .active > a:hover, .pagination > .active > span, .pagination > .active > span:focus, .pagination > .active > span:hover {
+	color: #fff;
+	background-color: #cd9050;
+	border-color: #ddd;
+}
+.pagination > li > a, .pagination > li > span {
+  color: #333;
+}
+
+/* HTML upload */
+input[id="fileField"] {
+		margin: 20px;
+}
+#fileDrop {
+	width: 90%;
+	height: 150px;
+	border: dashed 2px #ccc;
+	color: #666;
+}
+#fileDrop p, #files p {
+	text-align: center;
+	font-size: 1.6em;
+}
+#files {
+	width: 90%;
+	padding: 20px 20px 40px 20px;
+	border: solid 2px #ccc;
+	min-height: 240px;
+	position: relative;
+	color: #666;
+}
+#fileDrop,
+#files {
+		margin: 20px;
+	box-shadow: 0 0 20px #ccc;
+}
+#fileList {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+#fileList li {
+	margin: 0;
+	padding: 10px 0;
+	margin: 0;
+	overflow: auto;
+	border-bottom: solid 1px #ccc;
+	position: relative;
+}
+#fileList li img {
+	width: 120px;
+	border: solid 1px #999;
+	padding: 6px;
+	margin: 0 10px 0 0;
+	background-color: #eee;
+	display: block;
+	float: left;
+}
+#reset {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #ccc;
+	text-decoration: none;
+}
+#reset:hover {
+	color: #333;
+}
+#upload {
+	color: #fff;
+	position: absolute;
+	display: block;
+	bottom: 10px;
+	right: 10px;
+	width: auto;
+	background-color: #777;
+	padding: 4px 6px;
+	text-decoration: none;
+	font-weight: bold;
+	border-radius: 6px;
+}
+#upload:hover {
+	background-color: #333;
+}
+.loader {
+	position: absolute;
+	bottom: 10px;
+	right: 0;
+	color: orange;
+}
+.loadingIndicator {
+	width: 0%;
+	height: 2px;
+	background-color: orange;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+.imagePreview {
+	width: 300px;
+	padding: 10px;
+	border: solid 1px #ccc;
+	position: absolute;
+	background-color: white;
+}
+.imagePreview img {
+	max-width: 100%;
+	display: block;
+	margin: 0 auto;
+}
+
+/* Sign in form*/
+.signin {
+	max-width: 400px;
+	margin: 0px auto;
+}

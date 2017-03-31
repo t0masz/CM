@@ -1,0 +1,18 @@
+<div id="concerts">
+	<h2><span class="glyphicon glyphicon-music"></span><a href="{plink :Front:Concerts:show}">Akce</a></h2>
+	<div class="content">
+		{if count($concerts) > 0}
+		<ul class="list-unstyled icon-list music">
+		{foreach $concerts as $concert}
+			<li>
+				{$concert->date_from|interval:$concert->date_to,$concert->time_from}
+				<br><b>{$concert->title}</b>
+			</li>
+		{/foreach}
+		</ul>
+		{else}
+		Žádná plánovaná akce
+		{/if}
+	</div>
+</div>
+
