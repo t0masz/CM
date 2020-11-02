@@ -5,7 +5,7 @@ use Nette;
 /**
  * Tabulka articles
  */
-class ArticlesManager extends Nette\Object
+class ArticlesManager
 {
 
 	/** 

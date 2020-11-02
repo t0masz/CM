@@ -11,7 +11,7 @@ use Nette,
 /**
 * Images Manager.
 */
-class ImagesManager extends Nette\Object
+class ImagesManager
 {
 
 	/** 

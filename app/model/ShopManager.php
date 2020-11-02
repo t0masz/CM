@@ -12,7 +12,7 @@ use Nette,
 /**
  * Tabulka shop
  */
-class ShopManager extends Nette\Object
+class ShopManager
 {
 
 	/** 

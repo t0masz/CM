@@ -2,8 +2,8 @@
 
 namespace App\AdminModule;
 
-use Model,
-	VisualPaginator;
+use Model;
+use IPub\VisualPaginator\Components as VisualPaginator;
 
 abstract class BasePresenter extends \Nette\Application\UI\Presenter
 {
@@ -36,7 +36,9 @@ abstract class BasePresenter extends \Nette\Application\UI\Presenter
 
 	public function createComponentVp($name)
 	{
-		$visualPaginator = new VisualPaginator($this, $name);
+		$visualPaginator = new VisualPaginator\Control;
+        $visualPaginator->disableAjax();
+		$visualPaginator->setTemplateFile('bootstrap.latte');
 		$visualPaginator->getPaginator()->itemsPerPage = $this->config->paging['administration'];
 		return $visualPaginator;
 	}

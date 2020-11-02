@@ -5,7 +5,7 @@ use Nette;
 /**
  * Tabulka galleries
  */
-class GalleriesManager extends Nette\Object
+class GalleriesManager
 {
 
 	/** 

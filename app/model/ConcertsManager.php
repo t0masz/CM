@@ -5,7 +5,7 @@ use Nette;
 /**
  * Tabulka concerts
  */
-class ConcertsManager extends Nette\Object
+class ConcertsManager
 {
 
 	/** 

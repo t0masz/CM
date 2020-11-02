@@ -5,7 +5,7 @@ use Nette;
 /**
  * Tabulka pages
  */
-class PagesManager extends Nette\Object
+class PagesManager
 {
 
 	/** 

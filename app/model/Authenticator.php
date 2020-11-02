@@ -2,15 +2,16 @@
 
 namespace Model;
 
-use Nette,
-	Nette\Utils\Strings,
-	Nette\Security\Passwords;
+use Nette;
+use Nette\Utils\Strings;
+use Nette\Security\Passwords;
+use Nette\Database\Context;
 
 
 /**
 * Users management.
 */
-class Authenticator extends Nette\Object implements Nette\Security\IAuthenticator
+class Authenticator implements Nette\Security\IAuthenticator
 {
 	const
 		TABLE_NAME = 'users',
@@ -24,9 +25,10 @@ class Authenticator extends Nette\Object implements Nette\Security\IAuthenticato
 
 	/** @var Nette\Database\Context */
 	private $database;
-	public function __construct(Nette\Database\Context $database)
+	public function __construct(Context $database, Passwords $passwords)
 	{
 		$this->database = $database;
+        $this->passwords = $passwords;
 	}
 
 	/**
@@ -34,7 +36,7 @@ class Authenticator extends Nette\Object implements Nette\Security\IAuthenticato
 	 * @return Nette\Security\Identity
 	 * @throws Nette\Security\AuthenticationException
 	 */
-	public function authenticate(array $credentials)
+	public function authenticate(array $credentials): Nette\Security\IIdentity
 	{
 		list($username, $password) = $credentials;
 		$row = $this->database->table(self::TABLE_NAME)->where(self::COLUMN_NAME, $username)->fetch();
@@ -42,13 +44,13 @@ class Authenticator extends Nette\Object implements Nette\Security\IAuthenticato
 			throw new Nette\Security\AuthenticationException('The username is incorrect.', self::IDENTITY_NOT_FOUND);
 		} elseif ($row[self::COLUMN_PASSWORD] == hash('sha512', $credentials[self::PASSWORD])) {
 			$row->update([
-				self::COLUMN_PASSWORD_HASH => Passwords::hash($password),
+				self::COLUMN_PASSWORD_HASH => $this->passwords->hash($password),
 			]);
-		} elseif (!Passwords::verify($password, $row[self::COLUMN_PASSWORD_HASH])) {
+		} elseif (!$this->passwords->verify($password, $row[self::COLUMN_PASSWORD_HASH])) {
 			throw new Nette\Security\AuthenticationException('The password is incorrect.', self::INVALID_CREDENTIAL);
-		} elseif (Passwords::needsRehash($row[self::COLUMN_PASSWORD_HASH])) {
+		} elseif ($this->passwords->needsRehash($row[self::COLUMN_PASSWORD_HASH])) {
 			$row->update([
-				self::COLUMN_PASSWORD_HASH => Passwords::hash($password),
+				self::COLUMN_PASSWORD_HASH => $this->passwords->hash($password),
 			]);
 		}
 		$arr = $row->toArray();

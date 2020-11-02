@@ -29,6 +29,6 @@ $container = $configurator->createContainer();
 // Register DateTime picker addon
 \Vodacek\Forms\Controls\DateInput::register();
 // Register Antispam addon
-\Zet\AntiSpam\AntiSpamControl::register($container);
+//\Zet\AntiSpam\AntiSpamControl::register($container);
 
 return $container;

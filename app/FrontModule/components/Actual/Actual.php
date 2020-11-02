@@ -12,7 +12,7 @@ class Actual extends Control
 
 	public function __construct(Model\ConcertsManager $manager, $pagination)
 	{
-		parent::__construct();
+//		parent::__construct();
 		$this->manager = $manager;
 		$this->pagination = $pagination;
 	}

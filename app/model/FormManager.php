@@ -9,7 +9,7 @@ use Nette,
 	Latte,
 	Tracy;
 
-class FormManager extends Nette\Object
+class FormManager
 {
 
 	/** @var SetupManager */

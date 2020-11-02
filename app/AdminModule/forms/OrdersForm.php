@@ -2,8 +2,8 @@
 
 namespace App\AdminModule;
 
-use Nette\Application\UI\Form,
-	Nextras\Forms\Rendering\Bs3FormRenderer;
+use Nette\Application\UI\Form;
+use Nextras\FormsRendering\Renderers\Bs3FormRenderer;
 
 class OrdersForm extends Form {
 	

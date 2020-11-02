@@ -14,7 +14,7 @@ use Nette,
 /**
 * Users Manager.
 */
-class UsersManager extends Nette\Object
+class UsersManager
 {
 
 	/** @var UsersRepository */
@@ -29,12 +29,13 @@ class UsersManager extends Nette\Object
 	/** @var Model\SetupManager */
 	private $config;
 
-	public function __construct(UsersRepository $repository, Authenticator $authenticator, SetupManager $setup, IMailer $mailer)
+	public function __construct(UsersRepository $repository, Authenticator $authenticator, SetupManager $setup, IMailer $mailer, Passwords $passwords)
 	{
 		$this->usersRepository = $repository;
 		$this->authenticator = $authenticator;
 		$this->mailer = $mailer;
 		$this->config = $setup;
+        $this->passwords = $passwords;
 	}
 
 
@@ -102,7 +103,7 @@ class UsersManager extends Nette\Object
 		if ($values['password'] == '')
 			unset($values['password']);
 		else
-			$values['password'] = Passwords::hash($values['password']);
+			$values['password'] = $this->passwords->hash($values['password']);
 		if ($values['id']) {
 			$result = $this->usersRepository->findBy(array('id' => (int)$values['id']))->update((array)$values);
 			$return = $result > 0 ? 'updated' : FALSE;
@@ -120,7 +121,7 @@ class UsersManager extends Nette\Object
 	public function savePassword($values, $id)
 	{
 		$user_item = $this->usersRepository->findBy(array('id' => (int)$id))->fetch();
-		if (!Passwords::verify($values['oldPassword'], $user_item->password)) {
+		if (!$this->passwords->verify($values['oldPassword'], $user_item->password)) {
 			return 'wrong';
 		} else {
 			$result = $this->usersRepository->findBy(array('id' => (int)$id))->update(array('password' => Passwords::hash($values['newPassword'])));
@@ -143,7 +144,7 @@ class UsersManager extends Nette\Object
 		for ($i=0;$i<8;$i++) {
 			$newPassword .= $possibleChars[mt_rand(0,$countChars - 1)];
 		}
-		$password = Passwords::hash($newPassword);
+		$password = $this->passwords->hash($newPassword);
 		$latte = new Latte\Engine;
 		if (!$user->sent) {
 			$template = __DIR__ . '/../templates/Email/firstPassword.latte';

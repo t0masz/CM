@@ -5,7 +5,7 @@ use Nette;
 /**
  * Tabulka videos
  */
-class VideosManager extends Nette\Object
+class VideosManager
 {
 
 	/** 

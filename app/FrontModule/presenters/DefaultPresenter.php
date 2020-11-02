@@ -3,7 +3,7 @@
 namespace App\FrontModule;
 
 use Nette;
-use VisualPaginator;
+use IPub\VisualPaginator\Components as VisualPaginator;
 
 class DefaultPresenter extends Nette\Application\UI\Presenter
 {
@@ -56,8 +56,10 @@ class DefaultPresenter extends Nette\Application\UI\Presenter
      */
 	public function createComponentVp($name)
 	{
-		$visualPaginator = new VisualPaginator($this, $name);
-		$visualPaginator->getPaginator()->itemsPerPage = $this->config->paging['administration'];
+		$visualPaginator = new VisualPaginator\Control;
+        $visualPaginator->disableAjax();
+		$visualPaginator->setTemplateFile('bootstrap.latte');
+		$visualPaginator->getPaginator()->itemsPerPage = $this->config->paging['articles'];
 		return $visualPaginator;
 	}
 }

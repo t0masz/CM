@@ -7,7 +7,7 @@ use Nette\Application\UI\Form,
 	Nette\Security,
 	Nette\Utils\Json,
 	Nette\Utils\ArrayHash,
-	Nette\DateTime,
+	Nette\Utils\DateTime,
 	App\AdminModule\Forms;
 
 class SignPresenter extends BasePresenter

@@ -2,9 +2,9 @@
 
 namespace App\AdminModule;
 
-use Nette\Application\UI\Form,
-	Nextras\Forms\Rendering\Bs3FormRenderer,
-	Vodacek\Forms\Controls\DateInput;
+use Nette\Application\UI\Form;
+use Nextras\FormsRendering\Renderers\Bs3FormRenderer;
+use Vodacek\Forms\Controls\DateInput;
 
 class ArticlesForm extends Form {
 	
