@@ -2,10 +2,10 @@
 
 namespace App\FrontModule\Forms;
 
-use Nette\Application\UI\Form,
-	Nette\Forms\Controls,
-	Nextras\Forms\Rendering\Bs3FormRenderer,
-	Nette\Utils\Html;
+use Nette\Application\UI\Form;
+use Nette\Forms\Controls;
+use Nextras\FormsRendering\Renderers\Bs3FormRenderer;
+use Nette\Utils\Html;
 
 class ContactForm extends Form {
 	
@@ -24,7 +24,7 @@ class ContactForm extends Form {
 			->addRule(Form::EMAIL, 'Zadaný e-mail má chybný formát!');
 		$this->addTextArea('message', 'Vzkaz')
 			->addRule(Form::REQUIRED, 'Vyplňte, prosím, vzkaz');
-		$this->addAntiSpam("mail2", 120, 15);
+//		$this->addAntiSpam("mail2", 120, 15);
 		$this->addSubmit('ok', 'Odeslat vzkaz');
 
 		$this->setRenderer(new Bs3FormRenderer());

@@ -31,7 +31,7 @@ class ArticlesForm extends Form {
 		$this->addText('url', 'URL')
 			->addRule(Form::FILLED, 'Zadej prosím URL zkratku!');
 		$this->addTextArea('content', 'Obsah')->getControlPrototype()->class('ckeditor');
-		$this->addDate('created', 'Publikuj', DateInput::TYPE_DATETIME)
+		$this->addDate('created', 'Publikuj', DateInput::TYPE_DATETIME_LOCAL)
 			->setAttribute('class', 'form-control');
 		$this->addSubmit('ok', 'Uložit');
 

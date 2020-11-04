@@ -2,11 +2,11 @@
 
 namespace App\FrontModule\Forms;
 
-use Nette\Application\UI\Form,
-	Nette\Forms\Controls,
-	Nextras\Forms\Rendering\Bs3FormRenderer,
-    Nette\Utils\Html,
-	Model;
+use Nette\Application\UI\Form;
+use Nette\Forms\Controls;
+use Nextras\FormsRendering\Renderers\Bs3FormRenderer;
+use Nette\Utils\Html;
+use Model;
 
 class ShopForm extends Form {
 
@@ -28,12 +28,13 @@ class ShopForm extends Form {
 		$zbozi = $this->shopManager->findAll()->order('title');
 		foreach ($zbozi as $id => $row) {
 			$popis = Html::el("p", $row->title);
-			if ($row->pack) $popis->class('balicek');
+            if ($row->pack) { $popis->class('balicek'); }
 			if ($row->picture) {
-				if (!$row->url)
+				if (!$row->url) {
 					$popis->addHtml(Html::el("img")->src($row->picture)->class('shopimg'));
-				else
+                } else {
 					$popis->addHtml(Html::el("a")->href('/clanek/'.$row->url.'.html')->setHtml("<img src='$row->picture' class='shopimg' />"));
+                }
 			}
 			$this->addGroup($row->id)
 				->setOption("description", $popis);
@@ -78,7 +79,7 @@ class ShopForm extends Form {
 			->addRule(Form::FILLED, 'Musíte zvolit způsob doručení')
 			->setPrompt('Zvolte způsob doručení');
 		$this->addTextArea('poznamka', 'Poznámka');
-		$this->addAntiSpam("mail2", 120, 15);
+//		$this->addAntiSpam("mail2", 120, 15);
 		$this->addSubmit('ok', 'Odeslat objednávku');
 		
 		$this->setRenderer(new Bs3FormRenderer());

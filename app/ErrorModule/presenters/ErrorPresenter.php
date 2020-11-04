@@ -2,9 +2,9 @@
 
 namespace App\ErrorModule;
 
-use Nette,
-	Nette\Diagnostics\Debugger,
-	Nette\Application\BadRequestException;
+use Nette;
+use Tracy\Debugger;
+use Nette\Application\BadRequestException;
 
 /**
  * Error presenter.
