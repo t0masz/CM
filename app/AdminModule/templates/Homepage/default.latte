@@ -60,10 +60,13 @@
 					</div>
 				</div>
 			</div>
+            <a n:href="Galleries:show" title="Administrace fotogalerií">
 				<div class="panel-footer">
-					<span class="pull-left">&nbsp;</span>
+					<span class="pull-left">Přejdi na fotogalerie</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 					<div class="clearfix"></div>
 				</div>
+            </a>
 		</div>
 	</div>
 	<div class="col-lg-3 col-md-6">
@@ -74,15 +77,18 @@
 						<i class="fa fa-shopping-cart fa-5x"></i>
 					</div>
 					<div class="col-xs-9 text-right">
-						<div class="huge"><a n:href="Shop:show" title="Administrace e-shopu">{$items}</a>/<a n:href="Orders:show" title="Administrace e-shopu">{$orders}</a></div>
+						<div class="huge"><a n:href="Shop:show" title="Administrace e-shopu">{$items}</a>/<a n:href="Orders:show" title="Administrace objednávek">{$orders}</a></div>
 						<div>E-shop / Objednávky</div>
 					</div>
 				</div>
 			</div>
+            <a n:href="Orders:show" title="Administrace objednávek">
 				<div class="panel-footer">
-					<span class="pull-left">&nbsp;</span>
+					<span class="pull-left">Přejdi na objednávky</span>
+					<span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 					<div class="clearfix"></div>
 				</div>
+            </a>
 		</div>
 	</div>
 	{if $user->isInRole('admin')}
