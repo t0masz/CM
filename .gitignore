@@ -1,6 +1,5 @@
 /app/config/*.neon
 /libs/*
-/licensed/*
 /log/*
 /temp/*
 /vendor/*
@@ -12,4 +11,5 @@
 /www/data/*
 /www/js/*
 !/www/js/main.js
+/www/licensed/*
 !.htaccess
