@@ -37,6 +37,9 @@ a {
   text-decoration: underline;
 }
 
+legend {
+    display: none;
+}
 
 /*
  * Override Bootstrap's default container.
